@@ -8,9 +8,19 @@ const distFile = path.resolve(
   'dist/pages/admin/all/DarkMode.js'
 );
 
+const distAdminAllIndex = path.resolve(
+  process.cwd(),
+  'dist/pages/admin/all/index.js'
+);
+
 test('build creates DarkMode dist file', async () => {
   const content = await fs.readFile(distFile, 'utf8');
   assert.ok(content.includes('export const layout'), 'missing layout export');
+});
+
+test('admin/all index entry exists', async () => {
+  const content = await fs.readFile(distAdminAllIndex, 'utf8');
+  assert.ok(content.length > 0, 'admin/all index.js should not be empty');
 });
 
 test('DarkMode dist contains expected CSS + mount id', async () => {
