@@ -1,5 +1,4 @@
 import React from 'react';
-
 const styles = `
   :root {
     color-scheme: dark;
@@ -66,16 +65,14 @@ const styles = `
     border-color: #2b3648 !important;
   }
 `;
-
 export default function DarkMode() {
-  return React.createElement('style', {
-    id: 'admin-dark-mode',
-    dangerouslySetInnerHTML: { __html: styles }
-  });
+    return React.createElement('style', {
+        id: 'admin-dark-mode',
+        dangerouslySetInnerHTML: { __html: styles }
+    });
 }
-
 export const layout = {
-  areaId: 'head',
-  sortOrder: 9999
+    areaId: 'head',
+    sortOrder: 9999
 };
-
+//# sourceMappingURL=DarkMode.js.map
