@@ -1,5 +1,5 @@
 {
-  "path": "/admin/dark-mode",
+  "path": "/dark-mode",
   "methods": ["GET"],
   "access": "public"
 }

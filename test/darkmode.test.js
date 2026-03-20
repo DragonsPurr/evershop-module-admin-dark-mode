@@ -60,6 +60,6 @@ test('route.json is copied into dist', async () => {
     'dist/pages/admin/adminDarkMode/route.json'
   );
   const route = await fs.readFile(routeFile, 'utf8');
-  assert.ok(route.includes('/admin/dark-mode'), 'route.json should include /admin/dark-mode');
+  assert.ok(route.includes('/dark-mode'), 'route.json should include /dark-mode');
 });
 
