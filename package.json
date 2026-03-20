@@ -1,0 +1,17 @@
+{
+  "name": "admin_dark_mode",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Admin dark mode extension for EverShop",
+  "scripts": {
+    "build": "node scripts/build-dist.mjs",
+    "pretest": "npm run build",
+    "test": "node --test",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.20.0",
+    "eslint": "^9.20.0",
+    "globals": "^16.0.1"
+  }
+}

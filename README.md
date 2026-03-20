@@ -1,5 +1,10 @@
-# repo-template
-Skeleton Repo
+# admin_dark_mode
 
-## About
-This Template Repo Contains some sane defaults for a new repo.
+Minimal EverShop extension that injects dark mode CSS into all admin pages.
+
+This extension is loaded from:
+
+- `extensions/admin_dark_mode`
+- entry file: `dist/pages/admin/all/DarkMode.js`
+
+Tweak colors in the `styles` template string in that file.
