@@ -8,9 +8,9 @@ const distFile = path.resolve(
   'dist/pages/admin/all/DarkMode.js'
 );
 
-const distAdminAllIndex = path.resolve(
+const distAdminAllMiddleware = path.resolve(
   process.cwd(),
-  'dist/pages/admin/all/index.js'
+  'dist/pages/admin/all/adminAll.js'
 );
 
 test('build creates DarkMode dist file', async () => {
@@ -18,9 +18,9 @@ test('build creates DarkMode dist file', async () => {
   assert.ok(content.includes('export const layout'), 'missing layout export');
 });
 
-test('admin/all index entry exists', async () => {
-  const content = await fs.readFile(distAdminAllIndex, 'utf8');
-  assert.ok(content.length > 0, 'admin/all index.js should not be empty');
+test('admin/all middleware entry exists', async () => {
+  const content = await fs.readFile(distAdminAllMiddleware, 'utf8');
+  assert.ok(content.length > 0, 'admin/all/adminAll.js should not be empty');
 });
 
 test('DarkMode dist contains expected CSS + mount id', async () => {
