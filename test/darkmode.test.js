@@ -33,7 +33,7 @@ test('layout export is correct', async () => {
   // We keep this as a regex check so tests do not need React installed.
   assert.match(
     content,
-    /export const layout\s*=\s*\{\s*areaId:\s*'head'\s*,\s*sortOrder:\s*9999\s*\};/s
+    /export const layout\s*=\s*\{\s*areaId:\s*'content'\s*,\s*sortOrder:\s*9999\s*\};/s
   );
 });
 

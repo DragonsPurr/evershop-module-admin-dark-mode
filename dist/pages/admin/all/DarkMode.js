@@ -72,7 +72,7 @@ export default function DarkMode() {
     });
 }
 export const layout = {
-    areaId: 'head',
+    areaId: 'content',
     sortOrder: 9999
 };
 //# sourceMappingURL=DarkMode.js.map
