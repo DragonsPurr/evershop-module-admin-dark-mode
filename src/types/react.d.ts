@@ -3,6 +3,7 @@
 declare module 'react' {
   const React: {
     createElement: (...args: any[]) => any;
+    useEffect: (effect: () => void | (() => void), deps?: any[]) => void;
   };
 
   export default React;

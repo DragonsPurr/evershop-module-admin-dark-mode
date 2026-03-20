@@ -66,13 +66,26 @@ const styles = `
   }
 `;
 export default function DarkMode() {
+    // Some layout renderers may not guarantee direct `<style>` tag rendering.
+    // This effect ensures the style tag exists on the client after hydration.
+    React.useEffect(() => {
+        if (typeof document === 'undefined')
+            return;
+        const existing = document.getElementById('admin-dark-mode');
+        if (existing)
+            return;
+        const styleEl = document.createElement('style');
+        styleEl.id = 'admin-dark-mode';
+        styleEl.textContent = styles;
+        document.head.appendChild(styleEl);
+    }, []);
     return React.createElement('style', {
         id: 'admin-dark-mode',
         dangerouslySetInnerHTML: { __html: styles }
     });
 }
 export const layout = {
-    areaId: 'content',
+    areaId: 'body',
     sortOrder: 9999
 };
 //# sourceMappingURL=DarkMode.js.map
