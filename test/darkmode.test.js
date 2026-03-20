@@ -37,3 +37,10 @@ test('layout export is correct', async () => {
   );
 });
 
+test('bootstrap default export is a function', async () => {
+  const bootstrapFile = path.resolve(process.cwd(), 'dist/bootstrap.js');
+  const url = new URL(`file://${bootstrapFile}`);
+  const mod = await import(url);
+  assert.equal(typeof mod.default, 'function');
+});
+
