@@ -13,6 +13,35 @@ const tscEntry = path.join(
   'tsc'
 );
 
+async function copyFilePreserveDirs(srcPath, destPath) {
+  await fs.mkdir(path.dirname(destPath), { recursive: true });
+  await fs.copyFile(srcPath, destPath);
+}
+
+async function copyRouteJsonFiles() {
+  const srcRoot = path.join(projectRoot, 'src');
+  const destRoot = path.join(projectRoot, 'dist');
+
+  async function walk(currentDir) {
+    const entries = await fs.readdir(currentDir, { withFileTypes: true });
+    await Promise.all(
+      entries.map(async (ent) => {
+        const full = path.join(currentDir, ent.name);
+        if (ent.isDirectory()) {
+          await walk(full);
+          return;
+        }
+        if (ent.isFile() && ent.name === 'route.json') {
+          const rel = path.relative(srcRoot, full);
+          await copyFilePreserveDirs(full, path.join(destRoot, rel));
+        }
+      })
+    );
+  }
+
+  await walk(srcRoot);
+}
+
 const run = async () => {
   // Ensure we never ship stale compiled output.
   await fs.rm(distDir, { recursive: true, force: true });
@@ -30,6 +59,9 @@ const run = async () => {
   });
 
   if (exitCode !== 0) process.exitCode = exitCode;
+
+  // tsc compiles TS only; copy non-TS assets required by EverShop routing.
+  await copyRouteJsonFiles();
 };
 
 run().catch((err) => {

@@ -54,3 +54,12 @@ test('bootstrap default export is a function', async () => {
   assert.equal(typeof mod.default, 'function');
 });
 
+test('route.json is copied into dist', async () => {
+  const routeFile = path.resolve(
+    process.cwd(),
+    'dist/pages/admin/adminDarkMode/route.json'
+  );
+  const route = await fs.readFile(routeFile, 'utf8');
+  assert.ok(route.includes('/admin/dark-mode'), 'route.json should include /admin/dark-mode');
+});
+
