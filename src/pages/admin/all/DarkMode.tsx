@@ -62,6 +62,7 @@ const styles = `
   header,
   nav,
   .root-nav-item,
+  nav-item,
   aside,
   .header,
   .admin-header,
