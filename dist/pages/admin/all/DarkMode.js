@@ -60,9 +60,27 @@ const styles = `
   /* Header + nav */
   header,
   nav,
-  aside {
+  aside,
+  .header,
+  .admin-header,
+  .navbar,
+  [class*='header'],
+  [class*='topbar'],
+  .sticky.top-0,
+  .fixed.top-0,
+  .bg-white.sticky,
+  .bg-white.fixed,
+  .bg-white.border-b,
+  .bg-gray-50.sticky,
+  .bg-gray-50.fixed {
     background-color: #0f172a !important;
     border-color: #2b3648 !important;
+  }
+
+  /* Ensure common Tailwind header utility combinations are overridden */
+  .bg-white,
+  .bg-gray-50 {
+    background-color: #111827 !important;
   }
 `;
 export default function DarkMode() {
