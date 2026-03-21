@@ -71,6 +71,7 @@ const styles = `
   [class*='topbar'],
   .sticky.top-0,
   .fixed.top-0,
+  .bg-card,
   .bg-white.sticky,
   .bg-white.fixed,
   .bg-white.border-b,
