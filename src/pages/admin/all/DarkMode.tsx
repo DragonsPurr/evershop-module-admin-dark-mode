@@ -6,8 +6,8 @@ const styles = `
   }
 
   body {
-    background: #0b1220 !important;
-    color: #dbe3f0 !important;
+    background: #000000 !important;
+    color: #ffffff !important;
   }
 
   a {
@@ -28,6 +28,7 @@ const styles = `
 
   .text-gray-900,
   .text-gray-800,
+  
   .text-black {
     color: #e5edf8 !important;
   }
