@@ -60,6 +60,8 @@ const styles = `
   /* Header + nav */
   header,
   nav,
+  .root-nav-item,
+  nav-item,
   aside,
   .header,
   .admin-header,
@@ -68,6 +70,7 @@ const styles = `
   [class*='topbar'],
   .sticky.top-0,
   .fixed.top-0,
+  .bg-card,
   .bg-white.sticky,
   .bg-white.fixed,
   .bg-white.border-b,
@@ -81,6 +84,65 @@ const styles = `
   .bg-white,
   .bg-gray-50 {
     background-color: #111827 !important;
+  }
+
+  /* Left sidebar: active / current / hover states (often still light Tailwind) */
+  aside a,
+  aside nav a,
+  .admin-nav a,
+  .admin-nav-container a,
+  [class*='sidebar'] a {
+    color: #9fb0c8 !important;
+  }
+
+  aside a:hover,
+  .admin-nav a:hover,
+  .admin-nav-container a:hover {
+    background-color: #1e293b !important;
+    color: #e5edf8 !important;
+  }
+
+  aside a.active,
+  aside a.router-link-active,
+  aside a.router-link-exact-active,
+  aside a[aria-current='page'],
+  aside a[aria-current='true'],
+  nav a.active,
+  nav a.router-link-active,
+  nav a.router-link-exact-active,
+  .admin-nav a.active,
+  .admin-nav a.router-link-active,
+  .admin-nav a.router-link-exact-active,
+  .admin-nav-container a.active,
+  .admin-nav-container a.router-link-active,
+  li.active > a,
+  li.router-link-active > a {
+    background-color: #1e293b !important;
+    color: #e5edf8 !important;
+    border-color: #334155 !important;
+  }
+
+  /* Active row backgrounds from Tailwind palette */
+  aside .bg-blue-50,
+  aside .bg-blue-100,
+  aside .bg-indigo-50,
+  aside .bg-gray-100,
+  aside .bg-white,
+  .admin-nav .bg-blue-50,
+  .admin-nav .bg-blue-100,
+  .admin-nav .bg-gray-100 {
+    background-color: #1e293b !important;
+    color: #e5edf8 !important;
+  }
+
+  aside .text-blue-600,
+  aside .text-blue-700,
+  aside .text-indigo-600,
+  aside .text-primary,
+  .admin-nav .text-blue-600,
+  .admin-nav .text-blue-700,
+  .admin-nav .text-indigo-600 {
+    color: #93c5fd !important;
   }
 `;
 export default function DarkMode() {
