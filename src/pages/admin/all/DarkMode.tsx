@@ -21,8 +21,8 @@ const styles = `
   .bg-surface,
   .card,
   .panel {
-    background-color: #111827 !important;
-    color: #dbe3f0 !important;
+    background-color: #000000 !important;
+    color: #ffffff !important;
     border-color: #2b3648 !important;
   }
 
