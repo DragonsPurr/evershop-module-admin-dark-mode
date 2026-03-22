@@ -182,7 +182,7 @@ export const adminDarkModeStyles = `
     border-color: #2b3648 !important;
   }
 
-  .bg-card, .card-header {
+  .bg-card, .card-header, .bg-popover {
     background-color: #2d3b5c !important;
     border-color: #2b3648 !important;
   }
