@@ -9,7 +9,7 @@ This extension is loaded from:
 - `extensions/admin_dark_mode`
 - entry file: `dist/pages/admin/all/DarkMode.js` (generated from `src/pages/admin/all/DarkMode.tsx`)
 
-Tweak colors in the `styles` template string in `src/pages/admin/all/DarkMode.tsx`.
+Edit the raw CSS in **`src/styles/adminDarkModeStyles.ts`** (exported as `adminDarkModeStyles`). `DarkMode.tsx` only scopes it, wraps layers, and injects the `<style>` tag.
 
 ### Dark / light toggle
 
@@ -35,4 +35,4 @@ There isn’t a special EverShop “theme cache” you must clear for this exten
 
 If styles still lose to the default theme, open DevTools → **Computed** on the element and see which rule wins—it’s usually cascade/specificity, not cache.
 
-**Tailwind `@layer utilities`:** Utilities live in `@layer utilities`. Layer order is determined by the **first** time each layer name appears in the document, so a plain `@layer dark-mode-overrides { … }` can still lose if this extension’s `<style>` is parsed **before** Tailwind’s bundle (your layer ends up *below* utilities in precedence). The injected CSS therefore starts with `@layer utilities, dark-mode-overrides` so `dark-mode-overrides` is always **after** `utilities`. If something still wins (e.g. Tailwind v4 `theme` or another layer), extend that line in `DarkMode.tsx` to list every layer name in stack order, ending with `dark-mode-overrides`.
+**Tailwind `@layer utilities`:** Utilities live in `@layer utilities`. Layer order is determined by the **first** time each layer name appears in the document, so a plain `@layer dark-mode-overrides { … }` can still lose if this extension’s `<style>` is parsed **before** Tailwind’s bundle (your layer ends up *below* utilities in precedence). The injected CSS therefore starts with `@layer utilities, dark-mode-overrides` so `dark-mode-overrides` is always **after** `utilities`. If something still wins (e.g. Tailwind v4 `theme` or another layer), extend that line in **`DarkMode.tsx`** (where `layeredStyles` is built) to list every layer name in stack order, ending with `dark-mode-overrides`.

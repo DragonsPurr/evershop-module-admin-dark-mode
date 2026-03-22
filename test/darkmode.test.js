@@ -24,13 +24,17 @@ test('admin/all middleware entry exists', async () => {
   assert.match(content, /AdminThemeToggle\.js/);
 });
 
-test('DarkMode dist contains expected CSS + mount id', async () => {
+const distStylesFile = path.resolve(
+  process.cwd(),
+  'dist/styles/adminDarkModeStyles.js'
+);
+
+test('DarkMode dist wires scoped styles + mount id', async () => {
   const content = await fs.readFile(distFile, 'utf8');
 
-  assert.match(content, /color-scheme:\s*dark/);
-  assert.match(content, /background:\s*#000000\s*!important/);
   assert.match(content, /id:\s*'admin-dark-mode'/);
   assert.match(content, /scopeAdminDarkCss/);
+  assert.match(content, /adminDarkModeStyles/);
 
   // Layer-wrapped scoped styles injected via dangerouslySetInnerHTML.
   assert.match(
@@ -38,6 +42,13 @@ test('DarkMode dist contains expected CSS + mount id', async () => {
     /dangerouslySetInnerHTML:\s*\{\s*__html:\s*layeredStyles\s*\}/
   );
   assert.match(content, /@layer\s+utilities,\s*dark-mode-overrides/);
+});
+
+test('adminDarkModeStyles dist contains raw CSS', async () => {
+  const content = await fs.readFile(distStylesFile, 'utf8');
+  assert.match(content, /color-scheme:\s*dark/);
+  assert.match(content, /background:\s*#000000\s*!important/);
+  assert.match(content, /export const adminDarkModeStyles/);
 });
 
 test('scopeAdminDarkCss dist prefixes selectors', async () => {
