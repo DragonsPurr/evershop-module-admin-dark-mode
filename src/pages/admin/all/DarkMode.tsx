@@ -87,6 +87,10 @@ const styles = `
     border-color: #2b3648 !important;
   }
 
+  .text-base, .text-card-foreground {
+    color: #9fb0c8 !important;
+  }
+
   /* Ensure common Tailwind header utility combinations are overridden */
   .bg-white,
   .bg-gray-50 {
