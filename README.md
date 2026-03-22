@@ -2,6 +2,8 @@
 
 Minimal EverShop extension that injects dark mode CSS into all admin pages.
 
+EverShop treats each module under `pages/**` as a route or middleware entry and expects middleware files to **default-export a function**. Shared helpers (e.g. `scopeAdminDarkCss`, `themeStorage`) live under `src/lib/` so they are not mistaken for middleware.
+
 This extension is loaded from:
 
 - `extensions/admin_dark_mode`
@@ -33,4 +35,4 @@ There isn’t a special EverShop “theme cache” you must clear for this exten
 
 If styles still lose to the default theme, open DevTools → **Computed** on the element and see which rule wins—it’s usually cascade/specificity, not cache.
 
-**Tailwind `@layer utilities`:** Admin CSS from Tailwind is often in `@layer utilities`, which can override a plain unlayered `<style>` block. This extension wraps overrides in `@layer dark-mode-overrides { ... }` so they sit **after** the utilities layer in the cascade. If your stack adds more layers after utilities (e.g. another extension), you may need to rename or reorder that layer.
+**Tailwind `@layer utilities`:** Utilities live in `@layer utilities`. Layer order is determined by the **first** time each layer name appears in the document, so a plain `@layer dark-mode-overrides { … }` can still lose if this extension’s `<style>` is parsed **before** Tailwind’s bundle (your layer ends up *below* utilities in precedence). The injected CSS therefore starts with `@layer utilities, dark-mode-overrides` so `dark-mode-overrides` is always **after** `utilities`. If something still wins (e.g. Tailwind v4 `theme` or another layer), extend that line in `DarkMode.tsx` to list every layer name in stack order, ending with `dark-mode-overrides`.

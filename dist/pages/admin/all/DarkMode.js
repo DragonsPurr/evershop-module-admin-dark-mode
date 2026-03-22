@@ -1,6 +1,6 @@
 import React from 'react';
-import { scopeAdminDarkCss } from './scopeAdminDarkCss.js';
-import { applyAdminDarkClassToDocument, readAdminDarkPreference } from './themeStorage.js';
+import { scopeAdminDarkCss } from '../../../lib/scopeAdminDarkCss.js';
+import { applyAdminDarkClassToDocument, readAdminDarkPreference } from '../../../lib/themeStorage.js';
 const styles = `
   :root {
     color-scheme: dark;
@@ -195,12 +195,18 @@ const styles = `
 `;
 const scopedStyles = scopeAdminDarkCss(styles);
 /**
- * Tailwind v3+ puts utilities in `@layer utilities`, which wins over unlayered
- * rules from a plain <style> tag when specificity is equal. Wrapping our rules in
- * a new named layer appends them after the utilities layer so overrides win.
+ * Tailwind puts rules in `@layer utilities`. Layer order is fixed by the *first*
+ * time each layer name appears in the document — if this <style> is parsed before
+ * Tailwind’s bundle, `dark-mode-overrides` can be registered *before* `utilities`
+ * and still lose to utilities.
+ *
+ * Fix: `@layer utilities, dark-mode-overrides` forces our layer after `utilities`
+ * regardless of stylesheet order. (Tailwind v4 may add a `theme` layer; if anything
+ * still wins, try extending that line in source — see README.)
+ *
  * @see https://developer.mozilla.org/en-US/docs/Web/CSS/@layer
  */
-const layeredStyles = `@layer dark-mode-overrides {\n${scopedStyles}\n}`;
+const layeredStyles = `@layer utilities, dark-mode-overrides;\n\n@layer dark-mode-overrides {\n${scopedStyles}\n}`;
 export default function DarkMode() {
     React.useEffect(() => {
         if (typeof document === 'undefined')

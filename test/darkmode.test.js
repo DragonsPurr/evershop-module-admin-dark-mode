@@ -37,13 +37,13 @@ test('DarkMode dist contains expected CSS + mount id', async () => {
     content,
     /dangerouslySetInnerHTML:\s*\{\s*__html:\s*layeredStyles\s*\}/
   );
-  assert.match(content, /@layer\s+dark-mode-overrides/);
+  assert.match(content, /@layer\s+utilities,\s*dark-mode-overrides/);
 });
 
 test('scopeAdminDarkCss dist prefixes selectors', async () => {
   const scopeFile = path.resolve(
     process.cwd(),
-    'dist/pages/admin/all/scopeAdminDarkCss.js'
+    'dist/lib/scopeAdminDarkCss.js'
   );
   const content = await fs.readFile(scopeFile, 'utf8');
   assert.match(content, /admin-dark-mode/);

@@ -3,7 +3,7 @@ import {
   applyAdminDarkClassToDocument,
   readAdminDarkPreference,
   writeAdminDarkPreference
-} from './themeStorage.js';
+} from '../../../lib/themeStorage.js';
 
 export default function AdminThemeToggle() {
   const [dark, setDark] = React.useState(true);
