@@ -29,7 +29,7 @@ export const adminDarkModeStyles = `
   .bg-gray-50,
   .bg-gray-100,
   .bg-surface {
-    background-color: #000000 !important;
+    background-color: #0F172A !important;
     color: #ffffff !important;
     border-color: #2b3648 !important;
   }
