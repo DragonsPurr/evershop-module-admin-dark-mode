@@ -1,12 +1,14 @@
 import React from 'react';
+import { scopeAdminDarkCss } from './scopeAdminDarkCss.js';
+import { applyAdminDarkClassToDocument, readAdminDarkPreference } from './themeStorage.js';
 const styles = `
   :root {
     color-scheme: dark;
   }
 
   body {
-    background: #0b1220 !important;
-    color: #dbe3f0 !important;
+    background: #000000 !important;
+    color: #ffffff !important;
   }
 
   a {
@@ -20,13 +22,14 @@ const styles = `
   .bg-surface,
   .card,
   .panel {
-    background-color: #111827 !important;
-    color: #dbe3f0 !important;
+    background-color: #000000 !important;
+    color: #ffffff !important;
     border-color: #2b3648 !important;
   }
 
   .text-gray-900,
   .text-gray-800,
+  
   .text-black {
     color: #e5edf8 !important;
   }
@@ -61,7 +64,7 @@ const styles = `
   header,
   nav,
   .root-nav-item,
-  nav-item,
+  .nav-item,
   aside,
   .header,
   .admin-header,
@@ -145,7 +148,13 @@ const styles = `
     color: #93c5fd !important;
   }
 `;
+const scopedStyles = scopeAdminDarkCss(styles);
 export default function DarkMode() {
+    React.useEffect(() => {
+        if (typeof document === 'undefined')
+            return;
+        applyAdminDarkClassToDocument(readAdminDarkPreference());
+    }, []);
     // Some layout renderers may not guarantee direct `<style>` tag rendering.
     // This effect ensures the style tag exists on the client after hydration.
     React.useEffect(() => {
@@ -156,12 +165,12 @@ export default function DarkMode() {
             return;
         const styleEl = document.createElement('style');
         styleEl.id = 'admin-dark-mode';
-        styleEl.textContent = styles;
+        styleEl.textContent = scopedStyles;
         document.head.appendChild(styleEl);
     }, []);
     return React.createElement('style', {
         id: 'admin-dark-mode',
-        dangerouslySetInnerHTML: { __html: styles }
+        dangerouslySetInnerHTML: { __html: scopedStyles }
     });
 }
 export const layout = {

@@ -1,4 +1,9 @@
 import React from 'react';
+import { scopeAdminDarkCss } from './scopeAdminDarkCss.js';
+import {
+  applyAdminDarkClassToDocument,
+  readAdminDarkPreference
+} from './themeStorage.js';
 
 const styles = `
   :root {
@@ -148,7 +153,14 @@ const styles = `
   }
 `;
 
+const scopedStyles = scopeAdminDarkCss(styles);
+
 export default function DarkMode() {
+  React.useEffect(() => {
+    if (typeof document === 'undefined') return;
+    applyAdminDarkClassToDocument(readAdminDarkPreference());
+  }, []);
+
   // Some layout renderers may not guarantee direct `<style>` tag rendering.
   // This effect ensures the style tag exists on the client after hydration.
   React.useEffect(() => {
@@ -158,13 +170,13 @@ export default function DarkMode() {
 
     const styleEl = document.createElement('style');
     styleEl.id = 'admin-dark-mode';
-    styleEl.textContent = styles;
+    styleEl.textContent = scopedStyles;
     document.head.appendChild(styleEl);
   }, []);
 
   return React.createElement('style', {
     id: 'admin-dark-mode',
-    dangerouslySetInnerHTML: { __html: styles }
+    dangerouslySetInnerHTML: { __html: scopedStyles }
   });
 }
 

@@ -6,6 +6,7 @@
 // With `moduleResolution: NodeNext`, TypeScript will still resolve this to `DarkMode.tsx`,
 // while keeping the `.js` extension in the emitted import.
 import './DarkMode.js';
+import './AdminThemeToggle.js';
 
 export default function adminAll(request: any, response: any) {
   // No-op middleware: only ensures EverShop loads the shared admin/all bundle.

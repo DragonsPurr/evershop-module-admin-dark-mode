@@ -21,20 +21,31 @@ test('build creates DarkMode dist file', async () => {
 test('admin/all middleware entry exists', async () => {
   const content = await fs.readFile(distAdminAllMiddleware, 'utf8');
   assert.ok(content.length > 0, 'admin/all/adminAll.js should not be empty');
+  assert.match(content, /AdminThemeToggle\.js/);
 });
 
 test('DarkMode dist contains expected CSS + mount id', async () => {
   const content = await fs.readFile(distFile, 'utf8');
 
   assert.match(content, /color-scheme:\s*dark/);
-  assert.match(content, /background:\s*#0b1220\s*!important/);
+  assert.match(content, /background:\s*#000000\s*!important/);
   assert.match(content, /id:\s*'admin-dark-mode'/);
+  assert.match(content, /scopeAdminDarkCss/);
 
-  // Basic sanity check that the styles string is injected via dangerouslySetInnerHTML.
+  // Scoped styles injected via dangerouslySetInnerHTML.
   assert.match(
     content,
-    /dangerouslySetInnerHTML:\s*\{\s*__html:\s*styles\s*\}/
+    /dangerouslySetInnerHTML:\s*\{\s*__html:\s*scopedStyles\s*\}/
   );
+});
+
+test('scopeAdminDarkCss dist prefixes selectors', async () => {
+  const scopeFile = path.resolve(
+    process.cwd(),
+    'dist/pages/admin/all/scopeAdminDarkCss.js'
+  );
+  const content = await fs.readFile(scopeFile, 'utf8');
+  assert.match(content, /admin-dark-mode/);
 });
 
 test('layout export is correct', async () => {
