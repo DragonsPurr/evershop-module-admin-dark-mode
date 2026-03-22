@@ -16,7 +16,7 @@ export const adminDarkModeStyles = `
   }
 
   body {
-    background: #000000 !important;
+    background: #0F172A !important;
     color: #ffffff !important;
   }
 
@@ -29,7 +29,7 @@ export const adminDarkModeStyles = `
   .bg-gray-50,
   .bg-gray-100,
   .bg-surface {
-    background-color: #000000 !important;
+    background-color: #0F172A !important;
     color: #ffffff !important;
     border-color: #2b3648 !important;
   }
@@ -136,9 +136,9 @@ export const adminDarkModeStyles = `
   button[class*='bg-red-7'],
   button[class*='bg-rose-'],
   [role='button'][class*='destructive'] {
-    background-color: #991b1b !important;
+    background-color: #027F5F !important;
     color: #ffffff !important;
-    border-color: #b91c1c !important;
+    border-color: #027F5F !important;
   }
 
   /* Ghost / link-style — keep transparent but readable text */
