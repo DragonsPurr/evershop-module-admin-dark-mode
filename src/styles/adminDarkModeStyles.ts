@@ -184,7 +184,7 @@ export const adminDarkModeStyles = `
 
   .bg-card, .card-header, .bg-popover {
     background-color: #2d3b5c !important;
-    border-color: #2b3648 !important;
+    border-color:#5f6d84 !important;
   }
 
   /* Ensure common Tailwind header utility combinations are overridden */
