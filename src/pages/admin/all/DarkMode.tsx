@@ -8,6 +8,14 @@ import {
 const styles = `
   :root {
     color-scheme: dark;
+    /*
+     * shadcn / Tailwind: .text-card-foreground is usually
+     *   color: hsl(var(--card-foreground));
+     * so fixing the token beats almost all utility specificity. !important on the
+     * custom property wins over the host theme re-defining the same variable.
+     * #9fb0c8 ≈ hsl(215 26% 70%)
+     */
+    --card-foreground: 215 26% 70% !important;
   }
 
   body {
@@ -160,21 +168,32 @@ const styles = `
 
   /*
    * text-base + text-card-foreground (muted body/card copy).
-   * Host theme often ships utilities like .text-card-foreground { color: hsl(var(--...)); }
-   * with equal or higher specificity than a single class, or loads after this bundle — so we
-   * chain body/card/panel and repeat selectors to win !important fights, and we bump the
-   * style tag to the end of document.head in JS (see useEffect below).
+   * Fallbacks when the host does not use --card-foreground, or uses oklch() / inline color.
+   * [class~="…"] matches a whole class token; [class*="…"] catches text-card-foreground/80 etc.
    */
   body .text-base,
-  body .text-card-foreground,
   .card .text-base,
-  .card .text-card-foreground,
   .panel .text-base,
-  .panel .text-card-foreground,
   body .card .text-base,
+  body .panel .text-base {
+    color: #9fb0c8 !important;
+  }
+
+  body .text-card-foreground,
+  body [class~='text-card-foreground'],
+  body [class*='text-card-foreground'],
+  .card .text-card-foreground,
+  .panel .text-card-foreground,
   body .card .text-card-foreground,
-  body .panel .text-base,
-  body .panel .text-card-foreground {
+  body .panel .text-card-foreground,
+  body div.text-card-foreground,
+  body span.text-card-foreground,
+  body p.text-card-foreground,
+  body a.text-card-foreground,
+  body h1.text-card-foreground,
+  body h2.text-card-foreground,
+  body h3.text-card-foreground,
+  body h4.text-card-foreground {
     color: #9fb0c8 !important;
   }
 `;
@@ -200,20 +219,30 @@ export default function DarkMode() {
     document.head.appendChild(styleEl);
   }, []);
 
-  // Move our stylesheet to the end of <head> so it wins cascade order over host CSS
-  // that is injected later (common with bundled admin themes).
+  // Keep this stylesheet last in <head> so cascade order beats late-injected host CSS.
+  // MutationObserver catches link/style tags added after hydration.
   React.useEffect(() => {
     if (typeof document === 'undefined') return;
+    let debounce: ReturnType<typeof setTimeout> | undefined;
     const bump = () => {
-      const el = document.getElementById('admin-dark-mode');
-      if (el?.parentNode) document.head.appendChild(el);
+      clearTimeout(debounce);
+      debounce = setTimeout(() => {
+        const el = document.getElementById('admin-dark-mode');
+        if (el?.parentNode) document.head.appendChild(el);
+      }, 0);
     };
     bump();
     const t0 = setTimeout(bump, 0);
     const t1 = setTimeout(bump, 100);
+    const t2 = setTimeout(bump, 500);
+    const obs = new MutationObserver(bump);
+    obs.observe(document.head, { childList: true });
     return () => {
+      clearTimeout(debounce);
       clearTimeout(t0);
       clearTimeout(t1);
+      clearTimeout(t2);
+      obs.disconnect();
     };
   }, []);
 
