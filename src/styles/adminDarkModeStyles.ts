@@ -16,7 +16,7 @@ export const adminDarkModeStyles = `
   }
 
   body {
-    background: #000000 !important;
+    background: #0F172A !important;
     color: #ffffff !important;
   }
 
