@@ -19,11 +19,17 @@ const styles = `
   .bg-white,
   .bg-gray-50,
   .bg-gray-100,
-  .bg-surface,
+  .bg-surface {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border-color: #2b3648 !important;
+  }
+
+  /* Card/panel surfaces only — omit color so shadcn text-card-foreground
+   * and --card-foreground tokens are not overridden. */
   .card,
   .panel {
     background-color: #000000 !important;
-    color: #ffffff !important;
     border-color: #2b3648 !important;
   }
 
@@ -147,6 +153,26 @@ const styles = `
   .admin-nav .text-indigo-600 {
     color: #93c5fd !important;
   }
+
+  /*
+   * text-base + text-card-foreground (muted body/card copy).
+   * Host theme often ships utilities like .text-card-foreground { color: hsl(var(--...)); }
+   * with equal or higher specificity than a single class, or loads after this bundle — so we
+   * chain body/card/panel and repeat selectors to win !important fights, and we bump the
+   * style tag to the end of document.head in JS (see useEffect below).
+   */
+  body .text-base,
+  body .text-card-foreground,
+  .card .text-base,
+  .card .text-card-foreground,
+  .panel .text-base,
+  .panel .text-card-foreground,
+  body .card .text-base,
+  body .card .text-card-foreground,
+  body .panel .text-base,
+  body .panel .text-card-foreground {
+    color: #9fb0c8 !important;
+  }
 `;
 const scopedStyles = scopeAdminDarkCss(styles);
 export default function DarkMode() {
@@ -167,6 +193,24 @@ export default function DarkMode() {
         styleEl.id = 'admin-dark-mode';
         styleEl.textContent = scopedStyles;
         document.head.appendChild(styleEl);
+    }, []);
+    // Move our stylesheet to the end of <head> so it wins cascade order over host CSS
+    // that is injected later (common with bundled admin themes).
+    React.useEffect(() => {
+        if (typeof document === 'undefined')
+            return;
+        const bump = () => {
+            const el = document.getElementById('admin-dark-mode');
+            if (el === null || el === void 0 ? void 0 : el.parentNode)
+                document.head.appendChild(el);
+        };
+        bump();
+        const t0 = setTimeout(bump, 0);
+        const t1 = setTimeout(bump, 100);
+        return () => {
+            clearTimeout(t0);
+            clearTimeout(t1);
+        };
     }, []);
     return React.createElement('style', {
         id: 'admin-dark-mode',
