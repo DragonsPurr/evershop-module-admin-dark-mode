@@ -194,6 +194,13 @@ const styles = `
   }
 `;
 const scopedStyles = scopeAdminDarkCss(styles);
+/**
+ * Tailwind v3+ puts utilities in `@layer utilities`, which wins over unlayered
+ * rules from a plain <style> tag when specificity is equal. Wrapping our rules in
+ * a new named layer appends them after the utilities layer so overrides win.
+ * @see https://developer.mozilla.org/en-US/docs/Web/CSS/@layer
+ */
+const layeredStyles = `@layer dark-mode-overrides {\n${scopedStyles}\n}`;
 export default function DarkMode() {
     React.useEffect(() => {
         if (typeof document === 'undefined')
@@ -210,7 +217,7 @@ export default function DarkMode() {
             return;
         const styleEl = document.createElement('style');
         styleEl.id = 'admin-dark-mode';
-        styleEl.textContent = scopedStyles;
+        styleEl.textContent = layeredStyles;
         document.head.appendChild(styleEl);
     }, []);
     // Keep this stylesheet last in <head> so cascade order beats late-injected host CSS.
@@ -243,7 +250,7 @@ export default function DarkMode() {
     }, []);
     return React.createElement('style', {
         id: 'admin-dark-mode',
-        dangerouslySetInnerHTML: { __html: scopedStyles }
+        dangerouslySetInnerHTML: { __html: layeredStyles }
     });
 }
 export const layout = {

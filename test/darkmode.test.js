@@ -32,11 +32,12 @@ test('DarkMode dist contains expected CSS + mount id', async () => {
   assert.match(content, /id:\s*'admin-dark-mode'/);
   assert.match(content, /scopeAdminDarkCss/);
 
-  // Scoped styles injected via dangerouslySetInnerHTML.
+  // Layer-wrapped scoped styles injected via dangerouslySetInnerHTML.
   assert.match(
     content,
-    /dangerouslySetInnerHTML:\s*\{\s*__html:\s*scopedStyles\s*\}/
+    /dangerouslySetInnerHTML:\s*\{\s*__html:\s*layeredStyles\s*\}/
   );
+  assert.match(content, /@layer\s+dark-mode-overrides/);
 });
 
 test('scopeAdminDarkCss dist prefixes selectors', async () => {

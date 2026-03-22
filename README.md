@@ -20,3 +20,17 @@ If the button does not appear, your admin layout may use a different area id for
 This extension only ships compiled JS under `dist/`. EverShop generates per-route assets such as `.evershop/build/admin/<routeId>/server/query.graphql` when you run a **full build from your EverShop project root** (e.g. `npm run build` / the documented production build). Do **not** add ad-hoc `pages/admin/<route>/route.json` routes in this repo alone—those files will not exist until the host app’s webpack build runs, which causes `ENOENT ... query.graphql` in production.
 
 After changing this extension, run your EverShop app’s production build so admin bundles include `extensions/<name>/dist/**`.
+
+### Stale admin CSS / “changes not showing”
+
+There isn’t a special EverShop “theme cache” you must clear for this extension—updates are usually one of:
+
+1. **Extension output** — In this repo run `npm run build` so `dist/**` matches `src/**`. The host app loads the compiled files under `extensions/<name>/dist/`, not `src/`.
+2. **Host app build** — From your **EverShop project root**, run a full build (e.g. `npm run build`) or whatever your setup uses so webpack picks up changed extension files. If you use a `.evershop` (or similar) build directory, delete it and rebuild if you suspect a stale build artifact.
+3. **Dev server** — Restart the EverShop dev process after changing `dist/` so Node doesn’t keep an old module graph in memory.
+4. **Browser** — Hard refresh (e.g. Cmd+Shift+R), or DevTools → Network → **Disable cache** while testing, or try a private window. Confirms you’re not seeing an old hashed JS bundle from disk cache.
+5. **Docker / volumes** — If the app runs in a container, confirm the updated `extensions/.../dist` is mounted or baked into the image and restart the container.
+
+If styles still lose to the default theme, open DevTools → **Computed** on the element and see which rule wins—it’s usually cascade/specificity, not cache.
+
+**Tailwind `@layer utilities`:** Admin CSS from Tailwind is often in `@layer utilities`, which can override a plain unlayered `<style>` block. This extension wraps overrides in `@layer dark-mode-overrides { ... }` so they sit **after** the utilities layer in the cascade. If your stack adds more layers after utilities (e.g. another extension), you may need to rename or reorder that layer.
