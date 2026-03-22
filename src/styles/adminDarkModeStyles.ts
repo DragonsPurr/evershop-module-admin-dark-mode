@@ -173,13 +173,17 @@ export const adminDarkModeStyles = `
   [class*='topbar'],
   .sticky.top-0,
   .fixed.top-0,
-  .bg-card,
   .bg-white.sticky,
   .bg-white.fixed,
   .bg-white.border-b,
   .bg-gray-50.sticky,
   .bg-gray-50.fixed {
     background-color: #0f172a !important;
+    border-color: #2b3648 !important;
+  }
+
+  .bg-card, {
+    background-color: #2d3b5c !important;
     border-color: #2b3648 !important;
   }
 
