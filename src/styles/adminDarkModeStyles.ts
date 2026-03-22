@@ -249,7 +249,7 @@ export const adminDarkModeStyles = `
   }
 
   .uploader {
-    background-color: #0F172A !important;
+    background-color:#2d3b5c !important;
   }
 
   /*
