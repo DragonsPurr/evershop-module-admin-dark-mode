@@ -30,7 +30,7 @@ export const adminDarkModeStyles = `
   .bg-gray-100,
   .bg-surface {
     background-color: #0F172A !important;
-    color: #ffffff !important;
+    color: #8ab4ff !important;
     border-color: #2b3648 !important;
   }
 
@@ -246,6 +246,10 @@ export const adminDarkModeStyles = `
   .admin-nav .text-blue-700,
   .admin-nav .text-indigo-600 {
     color: #93c5fd !important;
+  }
+
+  .uploader {
+    background-color: #0F172A !important;
   }
 
   /*
