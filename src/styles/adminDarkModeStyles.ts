@@ -136,9 +136,9 @@ export const adminDarkModeStyles = `
   button[class*='bg-red-7'],
   button[class*='bg-rose-'],
   [role='button'][class*='destructive'] {
-    background-color: #991b1b !important;
+    background-color: #027F5F !important;
     color: #ffffff !important;
-    border-color: #b91c1c !important;
+    border-color: #027F5F !important;
   }
 
   /* Ghost / link-style — keep transparent but readable text */
