@@ -24,9 +24,9 @@ EverShop’s admin form styles ([`form.scss`](https://github.com/evershopcommerc
 
 ### Dark / light toggle
 
-A **Dark** / **Light** button is registered for the admin **`header`** area (`src/pages/admin/all/AdminThemeToggle.tsx`). It toggles the `admin-dark-mode` class on `<html>` and persists the choice in `localStorage` under `evershop_admin_dark_mode` (`"true"` / `"false"`). Dark styles are scoped to `html.admin-dark-mode`, so switching to light restores the default EverShop admin look.
+A **Dark** / **Light** button is registered for the admin **`header`** area (`src/pages/admin/all/AdminThemeToggle.tsx`). It uses the same Tailwind-style classes as other outline buttons (`border-gray-300`, `bg-white`, etc.) so the SCSS overrides match. `layout.sortOrder` is **`99999`** so it renders **after** other header widgets (e.g. user profile) and sits in the **far-right** corner; add `order-last` as a flex fallback. It toggles the `admin-dark-mode` class on `<html>` and persists the choice in `localStorage` under `evershop_admin_dark_mode` (`"true"` / `"false"`). Dark styles are scoped to `html.admin-dark-mode`, so switching to light restores the default EverShop admin look.
 
-If the button does not appear, your admin layout may use a different area id for the top bar—adjust `layout.areaId` in `AdminThemeToggle.tsx` to match.
+If the button does not appear, your admin layout may use a different area id for the top bar—adjust `layout.areaId` in `AdminThemeToggle.tsx` to match. If order is wrong relative to the profile menu, adjust **`layout.sortOrder`** (higher = later in the header area, usually further right).
 
 ## Production (EverShop host app)
 

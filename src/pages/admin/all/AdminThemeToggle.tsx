@@ -5,6 +5,19 @@ import {
   writeAdminDarkPreference
 } from '../../../lib/themeStorage.js';
 
+/**
+ * Utility classes aligned with typical admin outline/secondary buttons (Tailwind/shadcn-style).
+ * Dark mode overrides in SCSS target the same patterns as other buttons.
+ */
+const buttonClassName = [
+  'admin-theme-toggle',
+  'inline-flex items-center justify-center whitespace-nowrap',
+  'rounded-md border border-gray-300 bg-white',
+  'px-3 py-2 text-sm font-medium text-gray-900',
+  'shadow-sm shrink-0 order-last ml-2',
+  'hover:bg-gray-50'
+].join(' ');
+
 export default function AdminThemeToggle() {
   const [dark, setDark] = React.useState(true);
 
@@ -21,35 +34,20 @@ export default function AdminThemeToggle() {
     applyAdminDarkClassToDocument(next);
   };
 
-  return React.createElement(
-    'button',
-    {
-      type: 'button',
-      onClick: toggle,
-      'aria-pressed': dark,
-      title: dark ? 'Switch to light mode' : 'Switch to dark mode',
-      style: {
-        marginLeft: 'auto',
-        marginRight: '8px',
-        padding: '6px 12px',
-        borderRadius: '6px',
-        border: dark
-          ? '1px solid rgba(255,255,255,0.22)'
-          : '1px solid rgba(15,23,42,0.25)',
-        background: dark ? 'rgba(15,23,42,0.92)' : 'rgba(255,255,255,0.95)',
-        color: dark ? '#e5edf8' : '#0f172a',
-        cursor: 'pointer',
-        fontSize: '13px',
-        fontWeight: 500,
-        lineHeight: 1.2,
-        flexShrink: 0
-      }
-    },
-    dark ? 'Dark' : 'Light'
-  );
+  return React.createElement('button', {
+    type: 'button',
+    onClick: toggle,
+    className: buttonClassName,
+    'aria-pressed': dark,
+    title: dark ? 'Switch to light mode' : 'Switch to dark mode'
+  }, dark ? 'Dark' : 'Light');
 }
 
+/**
+ * Render after other header widgets (e.g. user profile) so the toggle sits
+ * in the far-right corner; `order-last` is a fallback if the header is flex.
+ */
 export const layout = {
   areaId: 'header',
-  sortOrder: 10000
+  sortOrder: 99999
 };
