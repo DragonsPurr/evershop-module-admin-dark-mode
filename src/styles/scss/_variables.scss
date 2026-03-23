@@ -43,3 +43,7 @@ $color-card-title-bg: #2d3b5d;
 
 // shadcn HSL token (space-separated, matches Tailwind card-foreground usage)
 $card-foreground-token: 215 26% 70%;
+
+// Modals / dialogs (e.g. “New Widget” on Widgets admin)
+$color-modal-surface: #1e293b;
+$color-modal-backdrop: rgba(0, 0, 0, 0.72);

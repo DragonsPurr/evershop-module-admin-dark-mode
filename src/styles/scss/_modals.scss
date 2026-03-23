@@ -1,0 +1,103 @@
+@use 'variables' as *;
+
+/*
+ * Admin modals (Widgets “New Widget”, etc.) — often portaled outside main layout
+ * with light bg-white / bg-gray-50 panels that miss generic page overrides.
+ */
+
+/* ARIA dialogs */
+[role='dialog'],
+[role='alertdialog'] {
+  background-color: $color-modal-surface !important;
+  color: $color-heading-text !important;
+  border-color: $color-border !important;
+}
+
+/* Radix UI / shadcn */
+[data-radix-dialog-overlay] {
+  background-color: $color-modal-backdrop !important;
+}
+
+[data-radix-dialog-content] {
+  background-color: $color-modal-surface !important;
+  color: $color-heading-text !important;
+  border-color: $color-border !important;
+}
+
+/* Classname patterns (Tailwind / component libs) */
+[class*='DialogContent'],
+[class*='dialog-content'],
+[class*='ModalContent'],
+[class*='modal-content'] {
+  background-color: $color-modal-surface !important;
+  color: $color-heading-text !important;
+  border-color: $color-border !important;
+}
+
+/* react-modal */
+.ReactModal__Overlay {
+  background-color: $color-modal-backdrop !important;
+}
+
+.ReactModal__Content {
+  background-color: $color-modal-surface !important;
+  color: $color-heading-text !important;
+  border: 1px solid $color-border !important;
+}
+
+/* Light utility panels inside any dialog (nested cards / sections) */
+[role='dialog'] .bg-white,
+[role='dialog'] .bg-gray-50,
+[role='dialog'] .bg-gray-100,
+[role='dialog'] [class*='bg-white'],
+[role='dialog'] [class*='bg-gray-50'],
+[role='alertdialog'] .bg-white,
+[role='alertdialog'] .bg-gray-50,
+[data-radix-dialog-content] .bg-white,
+[data-radix-dialog-content] .bg-gray-50,
+.ReactModal__Content .bg-white,
+.ReactModal__Content .bg-gray-50 {
+  background-color: $color-modal-surface !important;
+  color: $color-heading-text !important;
+  border-color: $color-border !important;
+}
+
+/* Headless UI Dialog panel (often max-w-lg rounded-lg bg-white) */
+[class*='DialogPanel'],
+[class*='dialog-panel'] {
+  background-color: $color-modal-surface !important;
+  color: $color-heading-text !important;
+  border-color: $color-border !important;
+}
+
+/* Bootstrap-style / generic “modal” */
+.modal,
+.modal-content,
+.modal-body,
+.modal-header,
+.modal-footer {
+  background-color: $color-modal-surface !important;
+  color: $color-heading-text !important;
+  border-color: $color-border !important;
+}
+
+.modal-backdrop {
+  background-color: $color-modal-backdrop !important;
+}
+
+/*
+ * Portaled layers: centered panel with max-w-* + bg-white (no role=dialog on outer node)
+ */
+div[class*='fixed'][class*='inset-0'] [class*='max-w-'][class*='bg-white'],
+div[class*='fixed'][class*='inset-0'] [class*='rounded-lg'][class*='shadow-lg'][class*='bg-white'],
+div[class*='fixed'][class*='inset-0'] [class*='rounded-md'][class*='border'][class*='bg-white'] {
+  background-color: $color-modal-surface !important;
+  color: $color-heading-text !important;
+  border-color: $color-border !important;
+}
+
+/* Backdrop tint for common Tailwind overlay utilities */
+div[class*='fixed'][class*='inset-0'][class*='bg-black'],
+div[class*='fixed'][class*='inset-0'][class*='bg-gray-900'] {
+  background-color: $color-modal-backdrop !important;
+}
