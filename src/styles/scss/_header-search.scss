@@ -1,0 +1,49 @@
+@use 'variables' as *;
+
+/*
+ * Top bar search: leading icon is often a separate <button> or boxed <span>
+ * inside .relative (absolute left) — it may keep Tailwind light bg (bg-white, etc.)
+ * and win over generic header rules. Core may use `body > header` or `.header` only.
+ */
+body > header .relative > button,
+body > header .relative button:first-child,
+.header .relative > button,
+.header .relative button:first-child,
+body > header button:has(+ input[type='search']),
+body > header button:has(+ input[type='text']),
+.header button:has(+ input[type='search']),
+.header button:has(+ input[type='text']),
+body > header form button,
+.header form button,
+body > header [class*='search'] button,
+body > header [class*='Search'] button,
+.header [class*='search'] button,
+.header [class*='Search'] button {
+  background-color: $color-header-bg !important;
+  border-color: $color-border !important;
+  color: $color-muted-text !important;
+}
+
+/* Icon-only prefix boxes that are spans/divs (light bg utility) */
+body > header .relative > span[class*='inline-flex'],
+.header .relative > span[class*='inline-flex'],
+body > header .relative > div[class*='bg-white'],
+body > header .relative > div[class*='bg-gray'],
+.header .relative > div[class*='bg-white'],
+.header .relative > div[class*='bg-gray'] {
+  background-color: $color-header-bg !important;
+  border-color: $color-border !important;
+  color: $color-muted-text !important;
+}
+
+body > header input[type='search'],
+body > header input[type='text'][name*='search'],
+body > header input[type='text'][placeholder*='Search'],
+body > header input[type='text'][placeholder*='search'],
+.header input[type='search'],
+.header input[type='text'][placeholder*='Search'],
+.header input[type='text'][placeholder*='search'] {
+  background: $color-input-bg !important;
+  color: $color-input-text !important;
+  border-color: $color-border-strong !important;
+}

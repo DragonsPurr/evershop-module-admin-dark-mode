@@ -16,7 +16,7 @@ Dark mode CSS lives under **`src/styles/scss/`** and is compiled to **`src/style
 - **`adminDarkMode.scss`** — entry file; pulls in partials.
 - **`_variables.scss`** — colors / tokens (start here to retune the theme).
 - **`_evershop-layout.scss`** — dark overrides aligned with EverShop core admin shell ([`global.scss`](https://github.com/evershopcommerce/evershop/blob/dev/packages/evershop/src/modules/base/pages/admin/all/global.scss): `.header`, `.content-wrapper`, `.footer`).
-- **`_surfaces.scss`**, **`_inputs.scss`**, **`_buttons.scss`**, **`_chrome.scss`**, **`_sidebar.scss`**, **`_text-tokens.scss`** — UI overrides.
+- **`_surfaces.scss`**, **`_inputs.scss`**, **`_buttons.scss`**, **`_chrome.scss`**, **`_header-search.scss`** (top bar search input + leading icon control), **`_sidebar.scss`**, **`_text-tokens.scss`** — UI overrides.
 
 EverShop’s admin form styles ([`form.scss`](https://github.com/evershopcommerce/evershop/blob/dev/packages/evershop/src/modules/base/pages/admin/all/form.scss)) use Tailwind **`@reference`** / **`@apply`**. This extension does **not** import that file; it would require EverShop’s Tailwind pipeline. We mirror the same areas (inputs, buttons, etc.) with plain SCSS + `!important` overrides.
 
