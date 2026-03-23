@@ -1,0 +1,27 @@
+@use 'variables' as *;
+
+body .text-base,
+.card .text-base,
+.panel .text-base,
+body .card .text-base,
+body .panel .text-base {
+  color: $color-muted-text !important;
+}
+
+body .text-card-foreground,
+body [class~="text-card-foreground"],
+body [class*="text-card-foreground"],
+.card .text-card-foreground,
+.panel .text-card-foreground,
+body .card .text-card-foreground,
+body .panel .text-card-foreground,
+body div.text-card-foreground,
+body span.text-card-foreground,
+body p.text-card-foreground,
+body a.text-card-foreground,
+body h1.text-card-foreground,
+body h2.text-card-foreground,
+body h3.text-card-foreground,
+body h4.text-card-foreground {
+  color: $color-muted-text !important;
+}

@@ -4,6 +4,7 @@
   "type": "module",
   "description": "Admin dark mode extension for EverShop",
   "scripts": {
+    "compile:scss": "node -e \"import('./scripts/compile-scss.mjs').then((m) => m.compileAdminScss())\"",
     "build": "node scripts/build-dist.mjs",
     "pretest": "npm run build",
     "test": "node --test",
@@ -13,6 +14,7 @@
     "@eslint/js": "^9.20.0",
     "eslint": "^9.20.0",
     "globals": "^16.0.1",
+    "sass": "^1.98.0",
     "typescript": "^5.9.3"
   }
 }

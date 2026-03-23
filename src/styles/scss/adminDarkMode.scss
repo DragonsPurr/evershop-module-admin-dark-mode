@@ -1,0 +1,17 @@
+// Admin dark mode — compiled to adminDarkModeStyles.ts for injection in DarkMode.tsx.
+//
+// Layout shell mirrors EverShop core:
+//   packages/evershop/src/modules/base/pages/admin/all/global.scss
+// Form primitives in core use Tailwind @apply (form.scss); we do not import that file
+// here because it requires @reference './tailwind.css' and the Tailwind pipeline.
+//
+// Edit partials under this folder, then run `npm run build`.
+
+@use 'root-and-body';
+@use 'evershop-layout';
+@use 'surfaces';
+@use 'inputs';
+@use 'buttons';
+@use 'chrome';
+@use 'sidebar';
+@use 'text-tokens';

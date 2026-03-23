@@ -1,0 +1,20 @@
+// Root tokens + base typography (EverShop admin body is typically 0.875rem).
+@use 'variables' as *;
+
+:root {
+  color-scheme: dark;
+  /*
+   * shadcn / Tailwind: .text-card-foreground → hsl(var(--card-foreground))
+   */
+  --card-foreground: #{$card-foreground-token} !important;
+}
+
+body {
+  font-size: 0.875rem;
+  background: $color-page-bg !important;
+  color: $color-body-text !important;
+}
+
+a {
+  color: $color-link;
+}

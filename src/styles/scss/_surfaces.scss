@@ -1,0 +1,36 @@
+@use 'variables' as *;
+
+/* Generic surfaces */
+.bg-white,
+.bg-gray-50,
+.bg-gray-100,
+.bg-surface {
+  background-color: $color-surface !important;
+  color: $color-surface-text !important;
+  border-color: $color-border !important;
+}
+
+/* Card/panel — omit text color so shadcn tokens apply */
+.card,
+.panel {
+  background-color: $color-card-bg !important;
+  border-color: $color-border !important;
+}
+
+.text-gray-900,
+.text-gray-800,
+.text-black {
+  color: $color-heading-text !important;
+}
+
+.text-gray-700,
+.text-gray-600,
+.text-gray-500 {
+  color: $color-muted-text !important;
+}
+
+.border,
+.border-gray-200,
+.border-gray-300 {
+  border-color: $color-border !important;
+}

@@ -128,5 +128,22 @@ tmp/
 .turbo/
 .next/
 
+### TypeScript / tooling ###
+*.tsbuildinfo
+.eslintcache
+.prettiercache
 
+### Sass (dart-sass) ###
+.sass-cache/
+
+### This extension (EverShop) ###
+# Most teams commit `dist/` so the extension works when copied into
+# `extensions/<name>/` without running `npm run build` on the host.
+# If you prefer to build only in CI and ship artifacts, uncomment:
+# /dist/
+
+# `src/styles/adminDarkModeStyles.ts` is generated from `src/styles/scss/` by
+# `npm run build` / `npm run compile:scss`. It is usually committed so clones
+# and IDEs work before the first build. To ignore it and always compile first:
+# /src/styles/adminDarkModeStyles.ts
 

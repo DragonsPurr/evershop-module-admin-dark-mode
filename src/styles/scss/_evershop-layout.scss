@@ -1,0 +1,42 @@
+// Mirrors EverShop admin shell structure from global.scss (dark overrides only).
+// Upstream: packages/evershop/src/modules/base/pages/admin/all/global.scss
+@use 'variables' as *;
+
+.header {
+  height: 3.5rem;
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $color-header-bg !important;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.35);
+  z-index: 1000;
+  border-color: $color-border !important;
+}
+
+.content-wrapper {
+  margin-top: 3.5rem;
+  min-height: 100vh;
+
+  .main-content {
+    overflow: hidden;
+    margin-left: 15rem;
+
+    .main-content-inner {
+      padding: 1.25rem 1.875rem;
+      min-height: 100vh;
+    }
+  }
+}
+
+.footer {
+  padding-left: 1.875rem;
+  margin-top: 1.25rem;
+  padding-bottom: 0.625rem;
+  border-top: 1px solid $color-border;
+  padding-top: 0.625rem;
+  color: $color-muted-text;
+}

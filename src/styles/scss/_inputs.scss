@@ -1,0 +1,14 @@
+@use 'variables' as *;
+
+input,
+select,
+textarea {
+  background: $color-input-bg !important;
+  color: $color-input-text !important;
+  border-color: $color-border-strong !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: $color-placeholder !important;
+}

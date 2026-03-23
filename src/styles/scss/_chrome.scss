@@ -1,0 +1,39 @@
+@use 'variables' as *;
+
+/* Header + nav chrome (extends .header from _evershop-layout) */
+header,
+nav,
+.root-nav-item,
+.nav-item,
+aside,
+.header,
+.admin-header,
+.navbar,
+[class*="header"],
+[class*="topbar"],
+.sticky.top-0,
+.fixed.top-0,
+.bg-white.sticky,
+.bg-white.fixed,
+.bg-white.border-b,
+.bg-gray-50.sticky,
+.bg-gray-50.fixed {
+  background-color: $color-header-bg !important;
+  border-color: $color-border !important;
+}
+
+.bg-card,
+.card-header,
+.bg-popover {
+  background-color: $color-card-elevated !important;
+  border-color: $color-card-elevated-border !important;
+}
+
+.bg-white,
+.bg-gray-50 {
+  background-color: $color-header-bg-alt !important;
+}
+
+.uploader {
+  background-color: $color-card-elevated !important;
+}

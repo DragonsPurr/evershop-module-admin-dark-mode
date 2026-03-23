@@ -9,7 +9,18 @@ This extension is loaded from:
 - `extensions/admin_dark_mode`
 - entry file: `dist/pages/admin/all/DarkMode.js` (generated from `src/pages/admin/all/DarkMode.tsx`)
 
-Edit the raw CSS in **`src/styles/adminDarkModeStyles.ts`** (exported as `adminDarkModeStyles`). `DarkMode.tsx` only scopes it, wraps layers, and injects the `<style>` tag.
+### Styles (SCSS)
+
+Dark mode CSS lives under **`src/styles/scss/`** and is compiled to **`src/styles/adminDarkModeStyles.ts`** when you run **`npm run build`** (do not edit that `.ts` file by hand).
+
+- **`adminDarkMode.scss`** — entry file; pulls in partials.
+- **`_variables.scss`** — colors / tokens (start here to retune the theme).
+- **`_evershop-layout.scss`** — dark overrides aligned with EverShop core admin shell ([`global.scss`](https://github.com/evershopcommerce/evershop/blob/dev/packages/evershop/src/modules/base/pages/admin/all/global.scss): `.header`, `.content-wrapper`, `.footer`).
+- **`_surfaces.scss`**, **`_inputs.scss`**, **`_buttons.scss`**, **`_chrome.scss`**, **`_sidebar.scss`**, **`_text-tokens.scss`** — UI overrides.
+
+EverShop’s admin form styles ([`form.scss`](https://github.com/evershopcommerce/evershop/blob/dev/packages/evershop/src/modules/base/pages/admin/all/form.scss)) use Tailwind **`@reference`** / **`@apply`**. This extension does **not** import that file; it would require EverShop’s Tailwind pipeline. We mirror the same areas (inputs, buttons, etc.) with plain SCSS + `!important` overrides.
+
+`DarkMode.tsx` only runs the compiled CSS through `scopeAdminDarkCss()`, wraps **`@layer dark-mode-overrides`**, and injects the `<style>` tag.
 
 ### Dark / light toggle
 

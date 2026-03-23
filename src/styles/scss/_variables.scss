@@ -1,0 +1,41 @@
+// Dark theme tokens (admin). Tweak here to adjust the whole theme.
+// EverShop core admin layout reference:
+// https://github.com/evershopcommerce/evershop/blob/dev/packages/evershop/src/modules/base/pages/admin/all/global.scss
+
+$color-page-bg: #0f172a;
+$color-body-text: #ffffff;
+$color-link: #8ab4ff;
+
+$color-surface: #0f172a;
+$color-surface-text: #8ab4ff;
+$color-card-bg: #000000;
+
+$color-muted-text: #9fb0c8;
+$color-heading-text: #e5edf8;
+
+$color-border: #2b3648;
+$color-border-strong: #334155;
+$color-border-muted: #475569;
+
+$color-input-bg: #0f172a;
+$color-input-text: #dbe3f0;
+$color-placeholder: #7f90a8;
+
+$color-header-bg: #0f172a;
+$color-header-bg-alt: #111827;
+$color-nav-active: #1e293b;
+
+$color-btn-secondary-bg: #1e293b;
+$color-btn-outline-bg: #0f172a;
+$color-btn-primary-bg: #1d4ed8;
+$color-btn-primary-border: #2563eb;
+$color-btn-destructive-bg: #027f5f;
+$color-btn-destructive-border: rgb(35, 193, 153);
+
+$color-accent-blue: #93c5fd;
+
+$color-card-elevated: #2d3b5c;
+$color-card-elevated-border: #5f6d84;
+
+// shadcn HSL token (space-separated, matches Tailwind card-foreground usage)
+$card-foreground-token: 215 26% 70%;

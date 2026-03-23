@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
+import { compileAdminScss } from './compile-scss.mjs';
 
 const projectRoot = process.cwd();
 const distDir = path.join(projectRoot, 'dist');
@@ -45,6 +46,8 @@ async function copyRouteJsonFiles() {
 const run = async () => {
   // Ensure we never ship stale compiled output.
   await fs.rm(distDir, { recursive: true, force: true });
+
+  await compileAdminScss();
 
   const child = spawn(
     process.execPath,

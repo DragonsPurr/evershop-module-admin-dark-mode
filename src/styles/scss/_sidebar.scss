@@ -1,0 +1,58 @@
+@use 'variables' as *;
+
+aside a,
+aside nav a,
+.admin-nav a,
+.admin-nav-container a,
+[class*="sidebar"] a {
+  color: $color-muted-text !important;
+}
+
+aside a:hover,
+.admin-nav a:hover,
+.admin-nav-container a:hover {
+  background-color: $color-nav-active !important;
+  color: $color-heading-text !important;
+}
+
+aside a.active,
+aside a.router-link-active,
+aside a.router-link-exact-active,
+aside a[aria-current="page"],
+aside a[aria-current="true"],
+nav a.active,
+nav a.router-link-active,
+nav a.router-link-exact-active,
+.admin-nav a.active,
+.admin-nav a.router-link-active,
+.admin-nav a.router-link-exact-active,
+.admin-nav-container a.active,
+.admin-nav-container a.router-link-active,
+li.active > a,
+li.router-link-active > a {
+  background-color: $color-nav-active !important;
+  color: $color-heading-text !important;
+  border-color: $color-border-strong !important;
+}
+
+aside .bg-blue-50,
+aside .bg-blue-100,
+aside .bg-indigo-50,
+aside .bg-gray-100,
+aside .bg-white,
+.admin-nav .bg-blue-50,
+.admin-nav .bg-blue-100,
+.admin-nav .bg-gray-100 {
+  background-color: $color-nav-active !important;
+  color: $color-heading-text !important;
+}
+
+aside .text-blue-600,
+aside .text-blue-700,
+aside .text-indigo-600,
+aside .text-primary,
+.admin-nav .text-blue-600,
+.admin-nav .text-blue-700,
+.admin-nav .text-indigo-600 {
+  color: $color-accent-blue !important;
+}

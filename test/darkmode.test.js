@@ -47,7 +47,7 @@ test('DarkMode dist wires scoped styles + mount id', async () => {
 test('adminDarkModeStyles dist contains raw CSS', async () => {
   const content = await fs.readFile(distStylesFile, 'utf8');
   assert.match(content, /color-scheme:\s*dark/);
-  assert.match(content, /background:\s*#000000\s*!important/);
+  assert.match(content, /background:\s*#0f172a\s*!important/);
   assert.match(content, /export const adminDarkModeStyles/);
 });
 
