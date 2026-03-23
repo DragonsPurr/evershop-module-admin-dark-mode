@@ -1,7 +1,10 @@
 @use 'variables' as *;
 
-/* Header + nav chrome (extends .header from _evershop-layout) */
-header,
+/*
+ * Main app chrome only. Do NOT use bare `header` or `[class*="header"]` — those
+ * match shadcn CardHeader / card title rows and force the shell color (#0f172a).
+ */
+body > header,
 nav,
 .root-nav-item,
 .nav-item,
@@ -9,7 +12,6 @@ aside,
 .header,
 .admin-header,
 .navbar,
-[class*="header"],
 [class*="topbar"],
 .sticky.top-0,
 .fixed.top-0,
@@ -22,8 +24,17 @@ aside,
   border-color: $color-border !important;
 }
 
-.bg-card,
+/* Card title strip (separate from main chrome) */
+.card > header,
+.card header,
 .card-header,
+[class*="CardHeader"],
+[class*="card-header"] {
+  background-color: $color-card-title-bg !important;
+  border-color: $color-card-elevated-border !important;
+}
+
+.bg-card,
 .bg-popover {
   background-color: $color-card-elevated !important;
   border-color: $color-card-elevated-border !important;
